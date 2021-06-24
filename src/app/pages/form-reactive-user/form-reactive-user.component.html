@@ -1,0 +1,69 @@
+<h4>Formulario Usuario</h4>
+<hr>
+<form class="row g-3" [formGroup]="registerForm" (ngSubmit)="guardarUsuario()">
+    <div class="col-md-4">
+        <label for="validationDefault01" class="form-label">Nombres</label>
+        <input type="text" class="form-control" formControlName="nombres">
+    </div>
+    <div class="col-md-4">
+        <label for="validationDefault02" class="form-label">Apellidos</label>
+        <input type="text" class="form-control" formControlName="apellidos">
+    </div>
+    <div class="col-md-4">
+        <label for="validationDefault03" class="form-label">Cedula</label>
+        <input type="number" class="form-control" formControlName="cedula">
+    </div>
+    <div class="col-md-6">
+        <label for="validationDefault04" class="form-label">Correo</label>
+        <input type="text" class="form-control" formControlName="correo">
+    </div>
+    <div class="col-md-6">
+        <label for="validationDefault05" class="form-label">Telefono</label>
+        <input type="number" class="form-control" formControlName="telefono">
+    </div>
+
+    <div class="row mt-3">
+        <div class="col text-danger">
+            <p *ngIf="campoInvalido('correo')">El email es invalido </p>
+            <p *ngIf="campoInvalido('nombres')">El nombre es obligatorio </p>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <button class="btn btn-primary" type="submit">Guardar</button>
+    </div>
+    <div class="col-12">
+        <button class="btn btn-secondary" type="button" (click)="cleanForm()">Limpiar</button>
+    </div>
+</form>
+
+<div class="mt-5">
+    <h4>Lista de Usuarios</h4>
+    <hr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nombres</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Cedula</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let usuario of listUsuarios">
+                <td>{{usuario.nombres}}</td>
+                <td>{{usuario.apellidos}}</td>
+                <td>{{usuario.cedula}}</td>
+                <td>{{usuario.correo}}</td>
+                <td>{{usuario.telefono}}</td>
+                <td>
+                    <button class="btn btn-info mr-1" (click)="cargarUsuario(usuario)">
+                        <i class="bi bi-pencil-fill"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
